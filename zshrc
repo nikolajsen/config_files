@@ -30,3 +30,6 @@ setopt histignoredups
 
 # keep more history
 export HISTSIZE=200
+
+# include the contents from .profile
+source "$HOME/.profile"
