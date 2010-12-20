@@ -50,9 +50,9 @@ _git_remote_branch() {
   if [[ -n $ref ]]; then
     if (( CURRENT == 2 )); then
       # first arg: operation
-      compadd create publish rename delete track
+      compadd track remote_add remote_rm rm push mv new pull
     elif (( CURRENT == 3 )); then
-      if [[ $words[2] == "publish" ]]; then
+      if [[ $words[2] == "push" ]]; then
         # second arg: local branch name
         compadd `git branch -l | sed "s/[ \*]//g"`
       else;
@@ -83,3 +83,11 @@ _cucumber_features() {
 }
 compdef _cucumber_features cuc
 
+# restore previous cwd
+if [[ -f ~/.last_cwd ]]; then
+  cd `cat ~/.last_cwd`
+fi
+_save_last_cwd() {
+  echo `pwd` > ~/.last_cwd
+}
+chpwd_functions=( "${chpwd_functions[@]}" _save_last_cwd )
