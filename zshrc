@@ -1,3 +1,5 @@
+fpath=(~/.zsh/completion $fpath)
+
 # completion
 autoload -U compinit
 compinit
@@ -15,6 +17,7 @@ fi
 
 # vi mode
 bindkey -v
+bindkey ^F vi-cmd-mode
 
 # use incremental search
 bindkey ^R history-incremental-search-backward
@@ -38,6 +41,15 @@ export SAVEHIST=10000
 
 # look for ey config in project dirs
 export EYRC=./.eyrc
+
+# restore previous cwd
+if [[ -f ~/.last_cwd ]]; then
+  cd `cat ~/.last_cwd`
+fi
+_save_last_cwd() {
+  echo `pwd` > ~/.last_cwd
+}
+chpwd_functions=( "${chpwd_functions[@]}" _save_last_cwd )
 
 # include the contents from .profile
 source "$HOME/.profile"
