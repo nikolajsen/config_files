@@ -29,7 +29,12 @@ export PS1='[${SSH_CONNECTION+"%n@%m:"}%~] '
 setopt histignoredups
 
 # keep more history
-export HISTSIZE=200
+export HISTSIZE=10000
+export HISTFILE="$HOME/.history"
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+# save history as well
+export SAVEHIST=10000
 
 # look for ey config in project dirs
 export EYRC=./.eyrc
