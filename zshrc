@@ -44,7 +44,7 @@ export EYRC=./.eyrc
 
 # restore previous cwd
 if [[ -f ~/.last_cwd ]]; then
-  cd `cat ~/.last_cwd`
+  cd "`cat ~/.last_cwd`"
 fi
 _save_last_cwd() {
   echo `pwd` > ~/.last_cwd
@@ -54,3 +54,5 @@ chpwd_functions=( "${chpwd_functions[@]}" _save_last_cwd )
 # include the contents from .profile
 source "$HOME/.profile"
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
